@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: salesforce
+    database: raw
+    schema: salesforce
+    tables:
+      - name: customers
+      - name: customer_demographics

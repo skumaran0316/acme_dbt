@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: zendesk
+    database: raw
+    schema: zendesk
+    tables:
+      - name: support_tickets

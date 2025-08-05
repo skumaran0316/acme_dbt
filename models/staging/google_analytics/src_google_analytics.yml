@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: google_analytics
+    database: raw
+    schema: google_analytics
+    tables:
+      - name: web_sessions

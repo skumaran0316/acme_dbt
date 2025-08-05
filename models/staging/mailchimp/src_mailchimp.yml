@@ -1,0 +1,8 @@
+version: 2
+
+sources:
+  - name: mailchimp
+    database: raw
+    schema: mailchimp
+    tables:
+      - name: email_events
