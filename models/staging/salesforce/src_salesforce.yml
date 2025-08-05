@@ -4,6 +4,30 @@ sources:
   - name: salesforce
     database: raw
     schema: salesforce
+    description: Customer and demographic data from Salesforce CRM
     tables:
       - name: customers
+        description: Customer data synced from Salesforce
+        columns:
+          - name: id
+            description: Unique customer ID
+            tests:
+              - not_null
+              - unique
+          - name: email
+            description: Primary email address
+          - name: signup_date
+            description: Customer signup date
       - name: customer_demographics
+        description: Customer demographic data
+        columns:
+          - name: customer_id
+            description: FK to customers.id
+            tests:
+              - not_null
+          - name: age
+            description: Customer age
+          - name: gender
+            description: Customer gender
+          - name: country
+            description: Customer country

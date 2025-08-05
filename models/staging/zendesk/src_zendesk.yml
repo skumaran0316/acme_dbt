@@ -1,8 +1,23 @@
 version: 2
-
 sources:
   - name: zendesk
     database: raw
     schema: zendesk
+    description: Customer support ticket data from Zendesk
     tables:
       - name: support_tickets
+        description: Customer support ticket history
+        columns:
+          - name: ticket_id
+            description: Ticket ID
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: FK to customers.id
+          - name: ticket_status
+            description: Status of the support ticket
+          - name: created_at
+            description: Ticket creation timestamp
+          - name: closed_at
+            description: Ticket closed timestamp

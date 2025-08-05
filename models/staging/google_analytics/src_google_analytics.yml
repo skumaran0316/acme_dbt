@@ -4,5 +4,19 @@ sources:
   - name: google_analytics
     database: raw
     schema: google_analytics
+    description: Customer web session activity from Google Analytics
     tables:
       - name: web_sessions
+        description: Session-level web analytics data
+        columns:
+          - name: session_id
+            description: Session identifier
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: FK to customers.id
+          - name: session_start
+            description: Start timestamp
+          - name: channel
+            description: Web channel type

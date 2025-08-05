@@ -1,8 +1,21 @@
 version: 2
-
 sources:
   - name: stripe
     database: raw
     schema: stripe
+    description: Transactional data processed through Stripe
     tables:
       - name: transactions
+        description: Customer transactions
+        columns:
+          - name: id
+            description: Transaction ID
+            tests:
+              - not_null
+              - unique
+          - name: customer_id
+            description: FK to customers.id
+          - name: amount
+            description: Transaction amount
+          - name: transaction_date
+            description: Date of transaction
