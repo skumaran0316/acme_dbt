@@ -8,5 +8,6 @@ select
     lower(trim(ticket_status)) as ticket_status,
     cast(created_at as timestamp) as created_at,
     cast(closed_at as timestamp) as closed_at,
-    lower(trim(category)) as category
+    lower(trim(category)) as category, 
+    CURRENT_TIMESTAMP AS record_loaded_ts
 from source

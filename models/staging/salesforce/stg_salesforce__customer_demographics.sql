@@ -11,5 +11,6 @@ select
         else 'Other'
     end as gender,
     initcap(country) as country,
-    upper(loyalty_status) as loyalty_status
+    upper(loyalty_status) as loyalty_status,
+    CURRENT_TIMESTAMP AS record_loaded_ts
 from source

@@ -7,5 +7,6 @@ select
     customer_id,
     try_cast(amount as float) as amount,
     cast(transaction_date as date) as transaction_date,
-    initcap(trim(product)) as product
+    initcap(trim(product)) as product,
+    CURRENT_TIMESTAMP AS record_loaded_ts
 from source
