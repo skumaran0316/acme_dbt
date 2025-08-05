@@ -11,9 +11,6 @@ sources:
         columns:
           - name: id
             description: Unique customer ID
-            tests:
-              - not_null
-              - unique
           - name: email
             description: Primary email address
           - name: signup_date

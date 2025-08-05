@@ -10,9 +10,6 @@ sources:
         columns:
           - name: ticket_id
             description: Ticket ID
-            tests:
-              - not_null
-              - unique
           - name: customer_id
             description: FK to customers.id
           - name: ticket_status

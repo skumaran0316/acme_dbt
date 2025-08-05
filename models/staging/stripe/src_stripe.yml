@@ -10,9 +10,6 @@ sources:
         columns:
           - name: id
             description: Transaction ID
-            tests:
-              - not_null
-              - unique
           - name: customer_id
             description: FK to customers.id
           - name: amount

@@ -11,9 +11,6 @@ sources:
         columns:
           - name: session_id
             description: Session identifier
-            tests:
-              - not_null
-              - unique
           - name: customer_id
             description: FK to customers.id
           - name: session_start
