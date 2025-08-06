@@ -1,0 +1,76 @@
+version: 2
+
+models:
+  - name: dim_channels
+    description: "Marketing and session channels"
+    columns:
+      - name: dim_channel_id
+        description: "Surrogate key for channel"
+        tests:
+          - not_null
+          - unique
+
+      - name: channel
+        description: "Name of the marketing channel"
+        tests:
+          - not_null
+
+  - name: fct_web_sessions
+    description: "Fact table of customer web sessions"
+    columns:
+      - name: session_id
+        description: "Unique session identifier"
+        tests:
+          - not_null
+          - unique
+
+      - name: dim_customer_id
+        description: "Foreign key to dim_customers"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: dim_customer_id
+
+      - name: dim_channel_id
+        description: "Foreign key to dim_channels"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_channels')
+              field: dim_channel_id
+
+      - name: session_start
+        description: "Session start timestamp"
+
+      - name: session_end
+        description: "Session end timestamp"
+
+      - name: record_loaded_ts
+        description: "Timestamp when record was loaded"
+
+  - name: fct_email_events
+    description: "Email engagement events by customer"
+    columns:
+      - name: event_id
+        description: "Unique email event ID"
+        tests:
+          - not_null
+          - unique
+
+      - name: dim_customer_id
+        description: "Foreign key to dim_customers"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: dim_customer_id
+
+      - name: event
+        description: "Type of event (open, click, etc.)"
+
+      - name: event_time
+        description: "Timestamp of the email event"
+
+      - name: record_loaded_ts
+        description: "Timestamp when record was loaded"

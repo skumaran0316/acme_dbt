@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: dim_products
+    description: "Product dimension table with product metadata"
+    columns:
+      - name: dim_product_id
+        description: "Surrogate key for product"
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        description: "Business key for product"
+        tests:
+          - not_null
+          - unique
+
+      - name: product_name
+        description: "Name of the product"
+        tests:
+          - not_null
+
+      - name: product_category
+        description: "Product category"
+
+  - name: fct_transactions
+    description: "Fact table capturing individual customer transactions"
+    columns:
+      - name: transaction_id
+        description: "Unique transaction ID"
+        tests:
+          - not_null
+          - unique
+
+      - name: dim_customer_id
+        description: "Foreign key to dim_customers"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: dim_customer_id
+
+      - name: dim_product_id
+        description: "Foreign key to dim_products"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: dim_product_id
+
+      - name: amount
+        description: "Transaction amount"
+        tests:
+          - not_null
+          - dbt_utils.accepted_range:
+              min_value: 0
+
+      - name: transaction_date
+        description: "Date of transaction"
+
+      - name: record_loaded_ts
+        description: "Timestamp when record was loaded"

@@ -1,0 +1,50 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: "Customer dimension including personal and demographic information."
+    columns:
+      - name: dim_customer_id
+        description: "Surrogate key for customer"
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: "Business key for customer"
+        tests:
+          - not_null
+          - unique
+
+      - name: first_name
+        description: "Customer's first name"
+        tests:
+          - not_null
+
+      - name: last_name
+        description: "Customer's last name"
+        tests:
+          - not_null
+
+      - name: email
+        description: "Email address"
+        tests:
+          - not_null
+
+      - name: signup_date
+        description: "Date the customer signed up"
+
+      - name: age
+        description: "Customer's age"
+
+      - name: gender
+        description: "Customer's gender"
+
+      - name: country
+        description: "Customer's country"
+
+      - name: loyalty_status
+        description: "Loyalty tier"
+
+      - name: record_loaded_ts
+        description: "Timestamp when record was loaded"

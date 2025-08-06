@@ -1,0 +1,34 @@
+version: 2
+
+models:
+  - name: fct_support_tickets
+    description: "Fact table of customer support ticket interactions"
+    columns:
+      - name: ticket_id
+        description: "Unique support ticket ID"
+        tests:
+          - not_null
+          - unique
+
+      - name: dim_customer_id
+        description: "Foreign key to dim_customers"
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: dim_customer_id
+
+      - name: ticket_status
+        description: "Current status of the support ticket"
+
+      - name: category
+        description: "Support category (e.g. returns, complaints)"
+
+      - name: created_at
+        description: "Timestamp ticket was created"
+
+      - name: closed_at
+        description: "Timestamp ticket was closed"
+
+      - name: record_loaded_ts
+        description: "Timestamp when record was loaded"
