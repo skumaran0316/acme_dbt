@@ -48,3 +48,59 @@ models:
 
       - name: record_loaded_ts
         description: "Timestamp when record was loaded"
+
+  - name: customers_360
+    description: "A Customer 360 view combining customer dimension data with transactional,web session, email engagement, and support ticket activity. Enables unified customer analytics and segmentation across teams."
+
+    columns:
+      - name: dim_customer_id
+        description: Surrogate key from the customer dimension table.
+        tests:
+          - not_null
+          - unique
+
+      - name: customer_id
+        description: Natural business key from Salesforce or source system.
+        tests:
+          - not_null
+
+      - name: email
+        description: Primary email address for customer.
+        tests:
+          - not_null
+
+      - name: total_transactions
+        description: Count of transactions made by the customer.
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: total_spent
+        description: Total amount spent by the customer.
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: email_opens
+        description: Number of marketing emails opened by the customer.
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: email_clicks
+        description: Number of email link clicks by the customer.
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: total_sessions
+        description: Number of web sessions initiated by the customer.
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"
+
+      - name: total_tickets
+        description: Number of support tickets submitted by the customer.
+        tests:
+          - dbt_utils.expression_is_true:
+              expression: ">= 0"

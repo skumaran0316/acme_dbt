@@ -19,7 +19,7 @@ select
     d.loyalty_status,
     current_timestamp as record_loaded_ts,
     date(current_timestamp) as effective_start_date,
-    9999/12/31 as effective_end_date,
+    date('9999-12-31') as effective_end_date,
     'Y' as is_current
 from customers c
 left join demographics d

@@ -3,19 +3,19 @@ with src as (
 ),
 
 dim_customers as (
-    select customer_id, customer_dim_id
+    select customer_id, dim_customer_id
     from {{ ref('dim_customers') }}
 ),
 
 dim_channels as (
-    select channel_name, channel_dim_id
+    select channel_name, dim_channel_id
     from {{ ref('dim_channels') }}
 )
 
 select
     src.session_id,
-    dc.customer_dim_id,
-    dch.channel_dim_id,
+    dc.dim_customer_id,
+    dch.dim_channel_id,
     src.session_start,
     src.session_end,
     current_timestamp as record_loaded_ts

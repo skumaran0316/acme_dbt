@@ -3,13 +3,13 @@ with src as (
 ),
 
 dim_customers as (
-    select customer_id, customer_dim_id
+    select customer_id, dim_customer_id
     from {{ ref('dim_customers') }}
 )
 
 select
     src.event_id,
-    dc.customer_dim_id,
+    dc.dim_customer_id,
     src.event as event_type,
     src.event_time,
     current_timestamp as record_loaded_ts

@@ -3,13 +3,13 @@ with src as (
 ),
 
 dim_customers as (
-    select customer_id, customer_dim_id
+    select customer_id, dim_customer_id
     from {{ ref('dim_customers') }}
 )
 
 select
     src.ticket_id,
-    dc.customer_dim_id,
+    dc.dim_customer_id,
     src.ticket_status,
     src.created_at,
     src.closed_at,

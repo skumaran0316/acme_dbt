@@ -10,7 +10,7 @@ models:
           - not_null
           - unique
 
-      - name: channel
+      - name: channel_name
         description: "Name of the marketing channel"
         tests:
           - not_null

@@ -1,7 +1,7 @@
 with all_channels as (
-    select channel from {{ ref('stg_google_analytics__web_sessions') }}
+    select channel as channel from {{ ref('stg_google_analytics__web_sessions') }}
     union
-    select channel from {{ ref('stg_mailchimp__email_events') }}
+    select event as channel from {{ ref('stg_mailchimp__email_events') }}
 )
 
 select
@@ -9,6 +9,6 @@ select
     channel as channel_name,
     current_timestamp as record_loaded_ts,
     date(current_timestamp) as effective_start_date,
-    9999/12/31 as effective_end_date,
+    date('9999-12-31') as effective_end_date,
     'Y' as is_current
 from all_channels
